@@ -129,9 +129,7 @@ class MainGame(object): # classes inherit from object by default
                         BETS_DONE = True
                         self.second_menu()
                         break
-            #random_number = random.randint(0, 30)
-            random_number = random.choice(list(self.bets_made.keys()))
-            random_number = int(random_number)
+            random_number = random.randint(0, 30)
             if str(random_number) in self.bets_made.keys():
                 money_betted = self.bets_made[str(random_number)]
                 money_made = self.auth_multi(money_betted)
