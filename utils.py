@@ -1,3 +1,5 @@
+import json
+from typing import Optional, Union
 def is_even(num: int) -> bool:
   if num % 2 == 0:
     return True
@@ -24,3 +26,37 @@ def is_multiple_10(num: int) -> bool:
     return True
   else:
     return False
+
+def create_account(user: str) -> bool:
+   with open("bank.json","r") as f:
+     users = json.load(f)
+   
+   if str(user) in users.keys():
+     return False
+   else:
+     users[str(user)] = {}
+     users[str(user)]["bank"] = 500
+
+   with open("bank.json","w") as f:
+     json.dump(users, f)
+   return True
+
+def get_bank_data(user: Optional[str] = None) -> Union[None, dict]:
+  with open("bank.json","r") as f:
+    users = json.load(f)
+  if user:
+    return users.get(str(user), {}).get("bank", None)
+  else:
+    return users
+
+def update_bank(user: str, change: int = 0) -> int:
+  users = get_bank_data()
+  users[str(user)]["bank"] += change
+  bal = users[str(user)]["bank"]
+  if bal < 0:
+    bal = 0
+    users[str(user)]["bank"] = 0
+  with open("bank.json","w") as f:
+     json.dump(users, f)
+
+  return bal
