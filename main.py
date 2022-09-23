@@ -1,5 +1,3 @@
-from turtle import update
-from venv import create
 from utils import is_even, is_prime, is_multiple_10, create_account, update_bank, get_bank_data # importing utils
 import random
 
