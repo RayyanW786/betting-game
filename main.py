@@ -53,6 +53,8 @@ class MainGame(object): # classes inherit from object by default
     def user_creation(self):
         while True:
             username = input("\nenter a username to create a account,\nType quit/return to return to previous menu: ")
+            if username == "":
+                continue
             if username.lower() in ["quit", "return"]:
                 break
             res = create_account(username)
@@ -68,11 +70,13 @@ class MainGame(object): # classes inherit from object by default
     def login(self):
         while True:
             username = input("\nenter a account username to log in to,\nType quit/return to return to previous menu: ")
+            if username == "":
+                continue
             if username.lower() in ["quit", "return"]:
                 self.first_menu()
                 break
             res = get_bank_data(username)
-            if not res:
+            if res == None:
                 print("unsuccessful, this account does not exist!")
 
             else:
@@ -160,4 +164,5 @@ class MainGame(object): # classes inherit from object by default
                     self.bets_made = {}
                     BETS_DONE = False
 
-MainGame()
+if __name__ == "__main__":
+    MainGame()
