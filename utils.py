@@ -41,7 +41,7 @@ def create_account(user: str) -> bool:
      json.dump(users, f)
    return True
 
-def get_bank_data(user: Optional[str] = None) -> Union[None, dict]:
+def get_bank_data(user: Optional[str] = None) -> Union[None, int, dict]:
   with open("bank.json","r") as f:
     users = json.load(f)
   if user:
