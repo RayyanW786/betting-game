@@ -15,17 +15,18 @@ def is_prime(num: int) -> bool:
     if (num % i) == 0:
       flag = True
       break
-
-  if flag:
-    return False
-  else:
-    return True
+  return flag
+#   if flag:
+#     return False
+#   else:
+#     return True
 
 def is_multiple_10(num: int) -> bool:
-  if num % 10 == 0:
-    return True
-  else:
-    return False
+    return num % 10 == 0:
+#   if num % 10 == 0:
+#     return True
+#   else:
+#     return False
 
 def create_account(user: str) -> bool:
    with open("bank.json","r") as f:
@@ -44,10 +45,12 @@ def create_account(user: str) -> bool:
 def get_bank_data(user: Optional[str] = None) -> Union[None, int, dict]:
   with open("bank.json","r") as f:
     users = json.load(f)
-  if user:
-    return users.get(str(user), {}).get("bank", None)
-  else:
-    return users
+  
+  return users.get(str(user), {}).get("bank", None) if user else users
+#   if user:
+#     return users.get(str(user), {}).get("bank", None)
+#   else:
+#     return users
 
 def update_bank(user: str, change: int = 0) -> int:
   users = get_bank_data()
